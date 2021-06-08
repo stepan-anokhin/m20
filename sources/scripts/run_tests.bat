@@ -21,5 +21,9 @@ cd %run_dir%
 
 rem Execute tests
 set test_count=0
-for /r %%I in (*.simh) do set /a test_count=test_count+1
+for /r %%I in (test_*.simh) do set /a test_count=test_count+1
 echo Running %test_count% tests
+
+for /r %%I in (test_*.simh) do (
+    %m20% %%I
+)
