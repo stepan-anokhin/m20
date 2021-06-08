@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ failure() }}
         with:
-          name: test-results
+          name: linux-test-results
           path: sources/complex_test_1963/run-*
           retention-days: 7
   mingw-build:
@@ -47,3 +47,10 @@ jobs:
         working-directory: sources/emulator
         run: |
           .\build_win.bat test
+      - name: Archive test results on failure
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: visual-studio-test-results
+          path: sources/complex_test_1963/run-*
+          retention-days: 7
