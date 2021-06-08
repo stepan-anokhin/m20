@@ -34,9 +34,10 @@ for /r %%I in (test_*.simh) do (
         set /a failed_count=failed_count+1
     ) else (
         set debug_file=%%~nxI
+        echo Debug file is %debug_file%
         set debug_file=%debug_file%_debug.txt
         echo Debug file is %debug_file%
-        findstr /m "Assertion failed" %debug_file%
+        findstr /c:"Assertion failed" %debug_file%
         if errorlevel 1 (
             echo FAILED
             set /a failed_count=failed_count+1
