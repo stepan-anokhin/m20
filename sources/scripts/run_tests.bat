@@ -1,7 +1,7 @@
 @echo off
 
-set m20=%1
-set test_dir=%2
+set m20=%~f1
+set test_dir=%~f2
 set timestamp=%DATE:/=-%_%TIME::=-%
 set timestamp=%timestamp: =%
 set run_dir=%test_dir%\run-%timestamp%-%RANDOM%
