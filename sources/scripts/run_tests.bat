@@ -27,6 +27,11 @@ echo Running %test_count% tests
 for /r %%I in (test_*.simh) do (
     echo | set /p="%%~nxI ..."
     %m20% %%I > %%I.output 2>&1
-    set debug_file=%%~nI_debug.txt
-    echo Debug file is %debug_file%
+    if errorlevel 0 (
+        echo ERROR
+    ) else (
+        set debug_file=.\%%~nxI
+        set debug_file=%debug_file%_debug.txt
+        echo Debug file is %debug_file%
+    )
 )
