@@ -31,4 +31,4 @@ jobs:
       - name: Build project
         working-directory: sources/emulator
         run: |
-          build_mingw64.bat
+          .\build_mingw64.bat
