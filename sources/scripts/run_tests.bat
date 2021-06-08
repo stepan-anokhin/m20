@@ -31,6 +31,7 @@ for /r %%I in (test_*.simh) do (
     echo Debug file is %debug_file%
     set debug_file=%debug_file%_debug.txt
     echo Debug file is %debug_file%
+    echo Debug file is %%~nxI_debug.txt"
     echo | set /p="%%~nxI ... "
     %m20% %%I > %%I.output 2>&1
     if errorlevel 1 (
