@@ -27,7 +27,6 @@ echo Running %test_count% tests
 set failed_count=0
 set success_count=0
 for /r %%I in (test_*.simh) do (
-    echo Debug file is %%~nI_debug.txt"
     echo | set /p="%%~nxI ... "
     %m20% %%I > %%I.output 2>&1
     if errorlevel 1 (
