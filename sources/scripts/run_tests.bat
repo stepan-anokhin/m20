@@ -25,6 +25,7 @@ for /r %%I in (test_*.simh) do set /a test_count=test_count+1
 echo Running %test_count% tests
 
 set failed_count=0
+set success_count=0
 for /r %%I in (test_*.simh) do (
     echo | set /p="%%~nxI ... "
     %m20% %%I > %%I.output 2>&1
@@ -32,7 +33,7 @@ for /r %%I in (test_*.simh) do (
         echo ERROR
         set /a failed_count=failed_count+1
     ) else (
-        set debug_file=.\%%~nxI
+        set debug_file=%%~nxI
         set debug_file=%debug_file%_debug.txt
         echo Debug file is %debug_file%
         findstr /m "Assertion failed" %debug_file%
@@ -41,13 +42,14 @@ for /r %%I in (test_*.simh) do (
             set /a failed_count=failed_count+1
         ) else (
             echo SUCCESS
+            set /a success_count=success_count+1
         )
     )
 )
 
 rem Get test results
-set /a success_count=test_count-failed_count
-echo Executed %test_count% tests, %success_count% success, %failed_count% failed
+set /a executed_count=success_count+failed_count
+echo Executed %executed_count% tests, %success_count% success, %failed_count% failed
 
 if failed_count 0 (
     exit 0
