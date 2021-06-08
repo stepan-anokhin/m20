@@ -27,10 +27,6 @@ echo Running %test_count% tests
 set failed_count=0
 set success_count=0
 for /r %%I in (test_*.simh) do (
-    set debug_file="%%~nxI"
-    echo Debug file is %debug_file%
-    set debug_file=%debug_file%_debug.txt
-    echo Debug file is %debug_file%
     echo Debug file is %%~nI_debug.txt"
     echo | set /p="%%~nxI ... "
     %m20% %%I > %%I.output 2>&1
@@ -38,8 +34,8 @@ for /r %%I in (test_*.simh) do (
         echo ERROR
         set /a failed_count=failed_count+1
     ) else (
-        findstr /c:"Assertion failed" %%~nI_debug.txt
-        if errorlevel 1 (
+        findstr /c:"Assertion failed" "%%~nI_debug.txt"
+        if errorlevel 0 (
             echo FAILED
             set /a failed_count=failed_count+1
         ) else (
