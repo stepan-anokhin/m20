@@ -272,3 +272,6 @@ clean:
 
 cleanru:
 	del $(M20ru_OBJS)
+
+test: $(M20).exe
+	..\scripts\run_tests.bat .\$(M20).exe ..\complex_test_1963

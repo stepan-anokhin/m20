@@ -1,4 +1,4 @@
-name: M-20 CI
+name: M-20 Simulator CI
 
 on: [ push ]
 
@@ -43,3 +43,7 @@ jobs:
         working-directory: sources/emulator
         run: |
           .\build_win.bat
+      - name: Run tests
+        working-directory: sources/emulator
+        run: |
+          .\build_win.bat test
