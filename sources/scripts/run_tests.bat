@@ -19,5 +19,7 @@ for %I in (*.simh *.cdr *.m20 *.drum0) do copy %I %run_dir%
 cd %run_dir%
 
 set test_count=0
-for %I in (*.simh) do set /a test_count=test_count+1
+for /r %%I in (*.simh) do (
+    set /a test_count=test_count+1
+)
 echo Running %test_count% tests
