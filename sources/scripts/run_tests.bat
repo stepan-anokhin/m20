@@ -25,5 +25,8 @@ for /r %%I in (test_*.simh) do set /a test_count=test_count+1
 echo Running %test_count% tests
 
 for /r %%I in (test_*.simh) do (
-    %m20% %%I
+    echo | set /p="%%I ..."
+    %m20% %%I > %%I.output
+    set debug_file=%%~nI_debug.txt
+    echo Debug file is %debug_file%
 )
