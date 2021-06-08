@@ -1,9 +1,9 @@
-name: M-20 Simulator CI
+name: M-20 CI
 
 on: [ push ]
 
 jobs:
-  ubuntu-build:
+  linux-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,7 +23,7 @@ jobs:
           name: test-results
           path: sources/complex_test_1963/run-*
           retention-days: 7
-  windows-build:
+  mingw-build:
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -32,3 +32,12 @@ jobs:
         working-directory: sources/emulator
         run: |
           .\build_mingw64.bat
+  visual-studio:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+      - name: Build project
+        working-directory: sources/emulator
+        run: |
+          .\build_win.bat
