@@ -15,7 +15,8 @@ echo.
 
 rem Copy files to run directory
 cd %test_dir%
-for %%I in (*.simh *.cdr *.m20 *.drum0) do copy %%I %run_dir%
+if not exist %run_dir% mkdir %run_dir%
+for %%I in (*.simh *.cdr *.m20 *.drum0) do copy %%I %run_dir% >NUL
 cd %run_dir%
 
 rem Execute tests
